@@ -1,0 +1,179 @@
+.left--title{
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.left__item {
+    width: 100%;
+    min-height: 45px;
+    display: flex;  
+}
+
+.item__inner{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    font-size: 17px;
+    font-weight: 400;
+
+    transition: all .1s linear;
+}
+
+.scroll-list__groop{
+    overflow: scroll;
+    max-height: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+}
+.scroll-list__groop::-webkit-scrollbar{
+    display: none;
+}
+
+.account__item {
+    display: flex;
+    justify-content: space-around;
+}
+
+.account__item > div {
+    align-items: center;
+}
+.account {
+    display: flex;
+    width: 70%;
+    
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 35px;
+    min-height: 35px;
+    margin: 0 10px 0 5px;
+
+    border-radius: 50%;
+
+    font-weight: 300;
+    color: #fff;
+    font-size: 18px;
+    
+}
+
+.account__inner{
+    overflow: hidden;
+    max-width: 300px
+}
+.username{
+    
+    font-size: 18px;
+}
+.user_email{
+    font-size: 14px;
+    color: #b7b7b7;
+}
+
+.search__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left__item{    
+    display: flex;
+    align-items: center;
+    padding: 12px 18px 12px 5px;
+    margin-bottom: 2px;
+    
+}
+
+.left__item:hover{
+    background-color: #f4f5f5;
+}
+
+
+.left__item--inner{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    font-size: 17px;
+    font-weight: 400;
+
+    transition: all .1s linear;
+}
+
+.left_item_flag{   
+    display: block;
+    width: 2px;
+    height: 25px;
+    /* background-color: #687681; */
+    opacity: 0;
+}
+
+.void{
+    height: 5vh;
+}
+
+.left__item:active .item__inner{
+    transform: scale(.99);
+    font-size: 16px;
+}
+
+.icon__left_section{
+    margin: 0 15px 0 12px;
+    height: 15px;
+    width: 15px;
+    
+}
+
+.left__item--active > .item__inner{
+    font-weight: 700;
+}
+
+.left__item--active > .item__inner > .left_item_flag {
+    opacity: 1;
+}
+
+.left_user-list_input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #fff;
+}
+
+.focus {
+    position: relative;
+    z-index: 2;
+    width: 0%;
+}
+
+.item__name{
+    display: flex;
+    
+}
+
+.focus::before{
+    content:attr(data-placeholder);
+    position: absolute;
+    display: block;
+    top: 8px;
+    left: 0;
+    opacity: 1;
+    transform: translateY(-50%);
+    
+    z-index:3;
+    transition: all .5s ease;
+}
+
+/* Colors of Categories */
+
+.active__category {
+    
+}
+

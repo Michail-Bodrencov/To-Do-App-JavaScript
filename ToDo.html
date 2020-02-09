@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- ================ Google Fonts ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto+Condensed:300,400,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <!-- ================ CSS links ================== -->
+    <link rel="stylesheet" href="styles/ToDo.main.css">
+    <link rel="stylesheet" href="styles/ToDo.colors.css">
+    <link rel="stylesheet" href="styles/ToDo.leftSection.css">
+    <link rel="stylesheet" href="styles/ToDo.middleSection.css">
+    <link rel="stylesheet" href="styles/ToDo.rightSection.css">
+    <title>To Do app JavaScript</title>
+</head>
+<body>
+
+<!-- ======================== ICONS ============================== -->
+<svg style="display: none;">
+    <symbol id="sun_icon" viewBox="0 0 302.4 302.4">
+        <g>
+            <path d="M204.8,97.6C191.2,84,172,75.2,151.2,75.2s-40,8.4-53.6,22.4c-13.6,13.6-22.4,32.8-22.4,53.6s8.8,40,22.4,53.6
+                c13.6,13.6,32.8,22.4,53.6,22.4s40-8.4,53.6-22.4c13.6-13.6,22.4-32.8,22.4-53.6S218.8,111.2,204.8,97.6z M190.4,190.4
+                c-10,10-24,16-39.2,16s-29.2-6-39.2-16s-16-24-16-39.2s6-29.2,16-39.2s24-16,39.2-16s29.2,6,39.2,16s16,24,16,39.2
+                S200.4,180.4,190.4,190.4z"/>
+            
+            <path d="M292,140.8h-30.8c-5.6,0-10.4,4.8-10.4,10.4c0,5.6,4.8,10.4,10.4,10.4H292c5.6,0,10.4-4.8,10.4-10.4
+                C302.4,145.6,297.6,140.8,292,140.8z"/>
+            <path d="M151.2,250.8c-5.6,0-10.4,4.8-10.4,10.4V292c0,5.6,4.8,10.4,10.4,10.4c5.6,0,10.4-4.8,10.4-10.4v-30.8
+                C161.6,255.6,156.8,250.8,151.2,250.8z"/>
+            <path d="M258,243.6l-22-22c-3.6-4-10.4-4-14.4,0s-4,10.4,0,14.4l22,22c4,4,10.4,4,14.4,0S262,247.6,258,243.6z"/>
+            <path d="M151.2,0c-5.6,0-10.4,4.8-10.4,10.4v30.8c0,5.6,4.8,10.4,10.4,10.4c5.6,0,10.4-4.8,10.4-10.4V10.4
+                C161.6,4.8,156.8,0,151.2,0z"/>
+            <path d="M258.4,44.4c-4-4-10.4-4-14.4,0l-22,22c-4,4-4,10.4,0,14.4c3.6,4,10.4,4,14.4,0l22-22C262.4,54.8,262.4,48.4,258.4,44.4z"
+                />
+            <path d="M41.2,140.8H10.4c-5.6,0-10.4,4.8-10.4,10.4s4.4,10.4,10.4,10.4h30.8c5.6,0,10.4-4.8,10.4-10.4
+                C51.6,145.6,46.8,140.8,41.2,140.8z"/>
+            <path d="M80.4,221.6c-3.6-4-10.4-4-14.4,0l-22,22c-4,4-4,10.4,0,14.4s10.4,4,14.4,0l22-22C84.4,232,84.4,225.6,80.4,221.6z"/>
+            <path d="M80.4,66.4l-22-22c-4-4-10.4-4-14.4,0s-4,10.4,0,14.4l22,22c4,4,10.4,4,14.4,0S84.4,70.4,80.4,66.4z"/>
+        </g>
+    </symbol>
+    <symbol id="star_icon" viewBox="0 -10 511.98685 511">
+        <g>
+            <path d="m114.59375 491.140625c-5.609375 0-11.179688-1.75-15.933594-5.1875-8.855468-6.417969-12.992187-17.449219-10.582031-28.09375l32.9375-145.089844-111.703125-97.960937c-8.210938-7.167969-11.347656-18.519532-7.976562-28.90625 3.371093-10.367188 12.542968-17.707032 23.402343-18.710938l147.796875-13.417968 58.433594-136.746094c4.308594-10.046875 14.121094-16.535156 25.023438-16.535156 10.902343 0 20.714843 6.488281 25.023437 16.511718l58.433594 136.769532 147.773437 13.417968c10.882813.980469 20.054688 8.34375 23.425782 18.710938 3.371093 10.367187.253906 21.738281-7.957032 28.90625l-111.703125 97.941406 32.9375 145.085938c2.414063 10.667968-1.726562 21.699218-10.578125 28.097656-8.832031 6.398437-20.609375 6.890625-29.910156 1.300781l-127.445312-76.160156-127.445313 76.203125c-4.308594 2.558594-9.109375 3.863281-13.953125 3.863281zm141.398438-112.875c4.84375 0 9.640624 1.300781 13.953124 3.859375l120.277344 71.9375-31.085937-136.941406c-2.21875-9.746094 1.089843-19.921875 8.621093-26.515625l105.472657-92.5-139.542969-12.671875c-10.046875-.917969-18.6875-7.234375-22.613281-16.492188l-55.082031-129.046875-55.148438 129.066407c-3.882812 9.195312-12.523438 15.511718-22.546875 16.429687l-139.5625 12.671875 105.46875 92.5c7.554687 6.613281 10.859375 16.769531 8.621094 26.539062l-31.0625 136.9375 120.277343-71.914062c4.308594-2.558594 9.109376-3.859375 13.953126-3.859375zm-84.585938-221.847656s0 .023437-.023438.042969zm169.128906-.0625.023438.042969c0-.023438 0-.023438-.023438-.042969zm0 0"/>
+        </g>
+    </symbol>
+    <symbol id="calendar_icon" viewBox="0 0 512 512">
+        <g>
+            <path d="M452,40h-24V0h-40v40H124V0H84v40H60C26.916,40,0,66.916,0,100v352c0,33.084,26.916,60,60,60h392
+                c33.084,0,60-26.916,60-60V100C512,66.916,485.084,40,452,40z M472,452c0,11.028-8.972,20-20,20H60c-11.028,0-20-8.972-20-20V188
+                h432V452z M472,148H40v-48c0-11.028,8.972-20,20-20h24v40h40V80h264v40h40V80h24c11.028,0,20,8.972,20,20V148z"/>
+            <rect x="76" y="230" width="40" height="40"/>
+            <rect x="156" y="230" width="40" height="40"/>
+            <rect x="236" y="230" width="40" height="40"/>
+            <rect x="316" y="230" width="40" height="40"/>
+            <rect x="396" y="230" width="40" height="40"/>
+            <rect x="76" y="310" width="40" height="40"/>
+            <rect x="156" y="310" width="40" height="40"/>
+            <rect x="236" y="310" width="40" height="40"/>
+            <rect x="316" y="310" width="40" height="40"/>
+            <rect x="76" y="390" width="40" height="40"/>
+            <rect x="156" y="390" width="40" height="40"/>
+            <rect x="236" y="390" width="40" height="40"/>
+            <rect x="316" y="390" width="40" height="40"/>
+            <rect x="396" y="310" width="40" height="40"/>
+            
+        </g>
+    </symbol>
+    <symbol id="user_icon" viewBox="0 0 512 512">
+        <g>
+            <path d="M437.02,330.98c-27.883-27.882-61.071-48.523-97.281-61.018C378.521,243.251,404,198.548,404,148
+                C404,66.393,337.607,0,256,0S108,66.393,108,148c0,50.548,25.479,95.251,64.262,121.962
+                c-36.21,12.495-69.398,33.136-97.281,61.018C26.629,379.333,0,443.62,0,512h40c0-119.103,96.897-216,216-216s216,96.897,216,216
+                h40C512,443.62,485.371,379.333,437.02,330.98z M256,256c-59.551,0-108-48.448-108-108S196.449,40,256,40
+                c59.551,0,108,48.448,108,108S315.551,256,256,256z"/>
+        </g>
+    </symbol>
+    <symbol id="house_icon" viewBox="0 1 511 511.999">
+        <g>
+            <path d="m498.699219 222.695312c-.015625-.011718-.027344-.027343-.039063-.039062l-208.855468-208.847656c-8.902344-8.90625-20.738282-13.808594-33.328126-13.808594-12.589843 0-24.425781 4.902344-33.332031 13.808594l-208.746093 208.742187c-.070313.070313-.144532.144531-.210938.214844-18.28125 18.386719-18.25 48.21875.089844 66.558594 8.378906 8.382812 19.441406 13.234375 31.273437 13.746093.484375.046876.96875.070313 1.457031.070313h8.320313v153.695313c0 30.417968 24.75 55.164062 55.167969 55.164062h81.710937c8.285157 0 15-6.71875 15-15v-120.5c0-13.878906 11.292969-25.167969 25.171875-25.167969h48.195313c13.878906 0 25.167969 11.289063 25.167969 25.167969v120.5c0 8.28125 6.714843 15 15 15h81.710937c30.421875 0 55.167969-24.746094 55.167969-55.164062v-153.695313h7.71875c12.585937 0 24.421875-4.902344 33.332031-13.8125 18.359375-18.367187 18.367187-48.253906.027344-66.632813zm-21.242188 45.421876c-3.238281 3.238281-7.542969 5.023437-12.117187 5.023437h-22.71875c-8.285156 0-15 6.714844-15 15v168.695313c0 13.875-11.289063 25.164062-25.167969 25.164062h-66.710937v-105.5c0-30.417969-24.746094-55.167969-55.167969-55.167969h-48.195313c-30.421875 0-55.171875 24.75-55.171875 55.167969v105.5h-66.710937c-13.875 0-25.167969-11.289062-25.167969-25.164062v-168.695313c0-8.285156-6.714844-15-15-15h-22.328125c-.234375-.015625-.464844-.027344-.703125-.03125-4.46875-.078125-8.660156-1.851563-11.800781-4.996094-6.679688-6.679687-6.679688-17.550781 0-24.234375.003906 0 .003906-.003906.007812-.007812l.011719-.011719 208.847656-208.839844c3.234375-3.238281 7.535157-5.019531 12.113281-5.019531 4.574219 0 8.875 1.78125 12.113282 5.019531l208.800781 208.796875c.03125.03125.066406.0625.097656.09375 6.644531 6.691406 6.632813 17.539063-.03125 24.207032zm0 0"/>
+        </g>
+    </symbol>    
+    <symbol id="user-list_icon" viewBox="0 0 512 512">
+        <g>
+            <path d="M492,236H144.262c-11.046,0-20,8.954-20,20s8.954,20,20,20H492c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z
+                "/>
+            <path d="M492,86H144.262c-11.046,0-20,8.954-20,20s8.954,20,20,20H492c11.046,0,20-8.954,20-20S503.046,86,492,86z"/>
+            <path d="M492,386H144.262c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20H492c11.046,0,20-8.954,20-20
+                C512,394.954,503.046,386,492,386z"/>
+            <circle cx="27" cy="106" r="27"/>
+            <circle cx="27" cy="256" r="27"/>
+            <circle cx="27" cy="406" r="27"/>
+        </g>
+    </symbol>
+    <symbol id="plus_icon"  viewBox="0 0 512 512">
+        <g>
+            <path d="M489.667,233.667H276.333V20.333C276.333,8.551,266.782-1,255-1s-21.333,9.551-21.333,21.333v213.333H20.333
+                C8.551,233.667-1,243.218-1,255s9.551,21.333,21.333,21.333h213.333v213.333c0,11.782,9.551,21.333,21.333,21.333
+                s21.333-9.551,21.333-21.333V276.333h213.333c11.782,0,21.333-9.551,21.333-21.333S501.449,233.667,489.667,233.667z"/>
+        </g>
+    </symbol>
+
+</svg>
+
+
+<section class="fullscreen-container color" data-color="green-major" 
+style="background: url('backgrounds/Backgorund9.png') no-repeat ; background-size: cover;background-color: #379323;">
+    <section class="section left-section minor-section" id="left-section">
+        <div class="left--title">
+            To Do app JavaScript
+        </div>
+        <!-- ============== ACCOUNT-ITEM ============== -->
+        <section class="left__item account__item  none_select">
+            <div class="account item__inner">
+                <div class="avatar  bg-color" data-color="green-major" >
+                    <div class="init">MT</div>
+                </div>
+                <div class="account__inner ">
+                    <div class="username">Mike Tyson</div>
+                    <div class="user_email">miketyson@gmail.com</div>
+                </div>
+            </div>
+            <div class="search__btn">Search</div>
+        </section>
+
+        <section class="scroll-list__groop">
+            
+            <!-- ============= LEFT-ITEMS ================== -->
+            <section id="left-Categories" class="none_select">
+                <!-- Тут будут Категории Подробнее в Categories.js -->
+            </section>
+            <hr>
+            <section id="left-UserList" class="none_select">
+                <!-- Тут будут пользовательские списки Подробнее в Categories.js -->
+            </section>
+            
+
+            
+
+            <div class="left__item ">
+                <div class="item__inner">
+                    
+                    <div class="">
+                        <svg class="icon__left_section">
+                            <use xlink:href="#plus_icon"></use>
+                        </svg>
+                    </div>
+                    
+                    <div class="item__name">
+                        <span class="focus" data-placeholder="Создать&nbspсписок"></span>
+                        <input type="text" class="left_user-list_input" >
+                        
+                    </div>
+                    
+                </div>
+                <div class="item_ready_btn" style="display: none;">Готово</div>
+            </div>
+
+            
+
+            
+
+            
+
+            <div class="void"></div>
+        </section> <!-- item groop End-->
+    </section>
+
+    <section class="section middle-section main-section" id="middle-section">
+        <section class="title__section">
+            <div class="title__groop">
+                
+                <h1 class="main__title"> <button id ='btn-left-toggle' >Открыть лево</button> Мой день</h1>
+                <div class="now__date"> четверг, 30 января</div>
+            </div>
+            <div class="title__groop">
+                <button id ='btn-right-toggle'>Открыть право</button>
+            </div>
+        </section>
+        <section class="notes__section">
+
+
+            <main class="note__section--inner scroll-list__groop">
+
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+                
+                <article class="note">
+                    <div class="note_inner">
+                        <div class="ico_note">ico</div>
+                        <div class="note__text">
+                            <div class="note__title">купить хлеба</div>
+                            <div class="note__subtitle">Задачи</div>
+                        </div>
+                    </div>
+                    <div class="note__favorite">fav</div>
+                </article>
+
+
+            </main>
+        </section>
+        <section class="input__section">
+            <label for="main__input" class="input__inner">
+                
+                <div class="ico-plus"></div>
+                <input type="text" class="main__input" id="main__input" placeholder="Добавить задачу" autofocus>
+                
+            </label>
+        </section>
+        
+        
+        
+    </section>
+    <section class="section right-section minor-section" id="right-section">
+        
+        <h1 class="right-title">Сегодня</h1>
+
+        <h2 class="right-title-articles">Ранее</h2>
+
+        <section class="right__articles">
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+        </section>
+
+        <h2 class="right-title-articles">Добавленно недавно</h2>
+
+        <section class="right__articles">
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+            <article class="note--right">
+                <div class="note_inner--right">
+                    <div class="ico_note">ico</div>
+                    <div class="note__text">
+                        <div class="note__title">купить хлеба</div>
+                        <div class="note__subtitle">Задачи</div>
+                    </div>
+                </div>
+                <div class="note__favorite">fav</div>
+            </article>
+
+        </section>
+
+
+
+    </section>
+</section>
+    <!-- ======== Scripts ======== -->
+    <script src="scripts/ToDo.Main.js"></script>
+    <script src="scripts/ToDo.Categories.js"></script>
+
+</body>
+</html>
